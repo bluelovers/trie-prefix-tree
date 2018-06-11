@@ -1,0 +1,277 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>trie-prefix-tree2</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">trie-prefix-tree2</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> trie-prefix-tree2</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="trie-prefix-tree">Trie Prefix Tree</h1>
+				<p>This is a <a href="https://en.wikipedia.org/wiki/Trie">Trie</a> implementation written in JavaScript, with insert and remove capability. It can be used to search a predefined dictionary for prefixes, check a prefix exists and retrieve a list of anagrams and sub-anagrams based on given letters.</p>
+				<h2 id="what-is-a-trie-">What is a Trie?</h2>
+				<p>A Trie (also known as a prefix-tree) is a data structure for storing strings in a tree. Each branch in the tree represents a single character which allows for fast and efficient depth-first searching. Let&#39;s say we have a dictionary with the words: CAR, CAT and CURL. We can visualise the trie like this:</p>
+				<p><img src="/trie.jpg" alt="trie data structure"></p>
+				<h2 id="installation">Installation</h2>
+				<p>Pull down dependencies:</p>
+				<pre><code>npm <span class="hljs-keyword">install</span>
+</code></pre><pre><code>npm <span class="hljs-built_in">test</span>
+</code></pre><h2 id="how-to-use">How to Use</h2>
+				<p>To use the Trie, install and save it to your package dependencies:</p>
+				<pre><code>npm <span class="hljs-keyword">install</span> trie-prefix-tree2
+</code></pre><p>To create a new Trie:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">var</span> trie = <span class="hljs-built_in">require</span>(<span class="hljs-string">'trie-prefix-tree2'</span>).trie;
+
+<span class="hljs-comment">// using ES2015 Modules</span>
+<span class="hljs-keyword">import</span> trie <span class="hljs-keyword">from</span> <span class="hljs-string">'trie-prefix-tree2'</span>;
+</code></pre>
+				<p>Instantiate the Trie:</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> myTrie = trie([<span class="hljs-string">'cat'</span>, <span class="hljs-string">'cats'</span>, <span class="hljs-string">'dogs'</span>, <span class="hljs-string">'elephant'</span>, <span class="hljs-string">'tiger'</span>]);
+</code></pre>
+				<p>Trie functionality:</p>
+				<pre><code class="lang-javascript"><span class="hljs-comment">// retrieve a stringified dump of the Trie object</span>
+myTrie.dump(); <span class="hljs-comment">// { c: { a: { t: $: 1 }, s: 1 ... }}</span>
+
+<span class="hljs-comment">// optionally pass in spacer parameter to format the output string</span>
+myTrie.dump(<span class="hljs-number">2</span>); <span class="hljs-comment">// equivalent of JSON.stringify(obj, null, 2);</span>
+</code></pre>
+				<pre><code class="lang-javascript"><span class="hljs-comment">// retrieve the Trie object instance</span>
+myTrie.tree();
+</code></pre>
+				<p>addWord</p>
+				<pre><code class="lang-javascript"><span class="hljs-comment">// add a new word to the Trie</span>
+myTrie.addWord(<span class="hljs-string">'lion'</span>);
+</code></pre>
+				<p>removeWord</p>
+				<pre><code class="lang-javascript"><span class="hljs-comment">// remove an existing word from the Trie</span>
+myTrie.removeWord(<span class="hljs-string">'dogs'</span>);
+</code></pre>
+				<p>Adding and removing words can be chained:</p>
+				<pre><code class="lang-javascript">myTrie.addWord(<span class="hljs-string">'hello'</span>).removeWord(<span class="hljs-string">'hello'</span>);
+</code></pre>
+				<p>Prefix searching:</p>
+				<pre><code class="lang-javascript"><span class="hljs-comment">// check if a prefix exists:</span>
+myTrie.isPrefix(<span class="hljs-string">'do'</span>); <span class="hljs-comment">// true</span>
+myTrie.isPrefix(<span class="hljs-string">'z'</span>); <span class="hljs-comment">// false</span>
+</code></pre>
+				<p>countPrefix</p>
+				<pre><code class="lang-javascript"><span class="hljs-comment">// count prefixes</span>
+myTrie.countPrefix(<span class="hljs-string">'c'</span>); <span class="hljs-comment">// 2</span>
+</code></pre>
+				<p>getPrefix</p>
+				<pre><code class="lang-javascript"><span class="hljs-comment">// get an array of words with the passed in prefix</span>
+myTrie.getPrefix(<span class="hljs-string">'c'</span>); <span class="hljs-comment">// ['cat', 'cats']</span>
+
+<span class="hljs-comment">// Pass false as the second parameter to disable </span>
+<span class="hljs-comment">// output being sorted alphabetically</span>
+<span class="hljs-comment">// this is useful when your dictionary is already sorted</span>
+<span class="hljs-comment">// and will therefore save performance</span>
+myTrie.getPrefix(<span class="hljs-string">'c'</span>, <span class="hljs-literal">false</span>); <span class="hljs-comment">// ['cat', 'cats']</span>
+</code></pre>
+				<p>getRandomWordWithPrefix</p>
+				<pre><code class="lang-javascript"><span class="hljs-comment">// get a random word at a prefix</span>
+myTrie.getRandomWordWithPrefix(<span class="hljs-string">'c'</span>); <span class="hljs-comment">// 'cat'</span>
+myTrie.getRandomWordWithPrefix(<span class="hljs-string">'c'</span>); <span class="hljs-comment">// 'cats'</span>
+</code></pre>
+				<h3 id="other-">Other:</h3>
+				<p>getWordsAll</p>
+				<pre><code class="lang-javascript"><span class="hljs-comment">// retrieve a full list of words in the Trie</span>
+<span class="hljs-comment">// the output array is automatically sorted</span>
+myTrie.getWordsAll(); <span class="hljs-comment">// ['cat', 'cats', 'elephant', 'lion', 'tiger']</span>
+
+<span class="hljs-comment">// pass false to disable the output being sorted</span>
+<span class="hljs-comment">// this is useful when your dictionary is already sorted</span>
+<span class="hljs-comment">// and will therefore save performance</span>
+myTrie.getWordsAll(<span class="hljs-literal">false</span>); <span class="hljs-comment">// ['cat', 'cats', 'elephant', 'tiger', 'lion']</span>
+</code></pre>
+				<p>hasWord</p>
+				<pre><code class="lang-javascript"><span class="hljs-comment">// check if a word exists in the Trie</span>
+myTrie.hasWord(<span class="hljs-string">'elephant'</span>); <span class="hljs-comment">// true</span>
+myTrie.hasWord(<span class="hljs-string">'zoo'</span>); <span class="hljs-comment">// false</span>
+</code></pre>
+				<p>getAnagrams</p>
+				<pre><code class="lang-javascript"><span class="hljs-comment">// generate a list of valid anagrams from the given letters</span>
+myTrie.getAnagrams(<span class="hljs-string">'act'</span>); <span class="hljs-comment">// ['cat'];</span>
+</code></pre>
+				<p>getSubAnagrams</p>
+				<pre><code class="lang-javascript"><span class="hljs-comment">// generate a list of valid sub-anagrams from the given letters</span>
+myTrie.getSubAnagrams(<span class="hljs-string">'ctalion'</span>); <span class="hljs-comment">// ['cat', 'cats', 'lion'];</span>
+</code></pre>
+				<h2 id="credits">Credits</h2>
+				<p>Credit goes to <a href="https://github.com/kentcdodds">Kent C. Dodds</a> for providing the awesome &#39;How to Create an Open Source JavaScript Library&#39; course, available on <a href="https://egghead.io/courses/how-to-write-an-open-source-javascript-library">egghead.io</a>.</p>
+				<h2 id="license">License</h2>
+				<p>This project is referenced under the MIT license and is free to use and distribute.</p>
+				<p>MIT @ Lyndsey Browning</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li><a href="index.html" class="title">README</a></li>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_index_.html">"index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_script_dts_bundle_.html">"script/dts-<wbr>bundle"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_append_.html">"src/append"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_checkprefix_.html">"src/check<wbr>Prefix"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_config_.html">"src/config"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_create_.html">"src/create"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_index_.html">"src/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_permutations_.html">"src/permutations"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_recurseprefix_.html">"src/recurse<wbr>Prefix"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_recurserandomword_.html">"src/recurse<wbr>Random<wbr>Word"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_utils_.html">"src/utils"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
