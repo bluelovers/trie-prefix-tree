@@ -7,6 +7,7 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/css/main.plus.css">
 </head>
 <body>
 <header>
@@ -67,91 +68,75 @@
 				<h2 id="what-is-a-trie-">What is a Trie?</h2>
 				<p>A Trie (also known as a prefix-tree) is a data structure for storing strings in a tree. Each branch in the tree represents a single character which allows for fast and efficient depth-first searching. Let&#39;s say we have a dictionary with the words: CAR, CAT and CURL. We can visualise the trie like this:</p>
 				<p><img src="/trie.jpg" alt="trie data structure"></p>
-				<h2 id="installation">Installation</h2>
-				<p>Pull down dependencies:</p>
-				<pre><code>npm <span class="hljs-keyword">install</span>
-</code></pre><pre><code>npm <span class="hljs-built_in">test</span>
-</code></pre><h2 id="how-to-use">How to Use</h2>
+				<h2 id="how-to-use">How to Use</h2>
 				<p>To use the Trie, install and save it to your package dependencies:</p>
-				<pre><code>npm <span class="hljs-keyword">install</span> trie-prefix-tree2
-</code></pre><p>To create a new Trie:</p>
-				<pre><code class="lang-ts"><span class="hljs-keyword">var</span> trie = <span class="hljs-built_in">require</span>(<span class="hljs-string">'trie-prefix-tree2'</span>).trie;
+				<pre><code>npm <span class="hljs-keyword">install</span> trie-prefix-tree2</code></pre><blockquote>
+					<p>see more in <a href="src/index.d.ts">API</a>
+					also has <a href="test/demo/demo.ts">demo.ts</a></p>
+				</blockquote>
+				<p>To create a new Trie:</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">var</span> trie = <span class="hljs-built_in">require</span>(<span class="hljs-string">'trie-prefix-tree2'</span>).trie;
 
 <span class="hljs-comment">// using ES2015 Modules</span>
-<span class="hljs-keyword">import</span> trie <span class="hljs-keyword">from</span> <span class="hljs-string">'trie-prefix-tree2'</span>;
-</code></pre>
+<span class="hljs-keyword">import</span> trie <span class="hljs-keyword">from</span> <span class="hljs-string">'trie-prefix-tree2'</span>;</code></pre>
 				<p>Instantiate the Trie:</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> myTrie = trie([<span class="hljs-string">'cat'</span>, <span class="hljs-string">'cats'</span>, <span class="hljs-string">'dogs'</span>, <span class="hljs-string">'elephant'</span>, <span class="hljs-string">'tiger'</span>]);
-</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-keyword">var</span> myTrie = trie([<span class="hljs-string">'cat'</span>, <span class="hljs-string">'cats'</span>, <span class="hljs-string">'dogs'</span>, <span class="hljs-string">'elephant'</span>, <span class="hljs-string">'tiger'</span>]);</code></pre>
 				<p>Trie functionality:</p>
-				<pre><code class="lang-javascript"><span class="hljs-comment">// retrieve a stringified dump of the Trie object</span>
+				<pre><code class="language-javascript"><span class="hljs-comment">// retrieve a stringified dump of the Trie object</span>
 myTrie.dump(); <span class="hljs-comment">// { c: { a: { t: $: 1 }, s: 1 ... }}</span>
 
 <span class="hljs-comment">// optionally pass in spacer parameter to format the output string</span>
-myTrie.dump(<span class="hljs-number">2</span>); <span class="hljs-comment">// equivalent of JSON.stringify(obj, null, 2);</span>
-</code></pre>
-				<pre><code class="lang-javascript"><span class="hljs-comment">// retrieve the Trie object instance</span>
-myTrie.tree();
-</code></pre>
+myTrie.dump(<span class="hljs-number">2</span>); <span class="hljs-comment">// equivalent of JSON.stringify(obj, null, 2);</span></code></pre>
+				<pre><code class="language-javascript"><span class="hljs-comment">// retrieve the Trie object instance</span>
+myTrie.tree();</code></pre>
 				<p>addWord</p>
-				<pre><code class="lang-javascript"><span class="hljs-comment">// add a new word to the Trie</span>
-myTrie.addWord(<span class="hljs-string">'lion'</span>);
-</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-comment">// add a new word to the Trie</span>
+myTrie.addWord(<span class="hljs-string">'lion'</span>);</code></pre>
 				<p>removeWord</p>
-				<pre><code class="lang-javascript"><span class="hljs-comment">// remove an existing word from the Trie</span>
-myTrie.removeWord(<span class="hljs-string">'dogs'</span>);
-</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-comment">// remove an existing word from the Trie</span>
+myTrie.removeWord(<span class="hljs-string">'dogs'</span>);</code></pre>
 				<p>Adding and removing words can be chained:</p>
-				<pre><code class="lang-javascript">myTrie.addWord(<span class="hljs-string">'hello'</span>).removeWord(<span class="hljs-string">'hello'</span>);
-</code></pre>
+				<pre><code class="language-javascript">myTrie.addWord(<span class="hljs-string">'hello'</span>).removeWord(<span class="hljs-string">'hello'</span>);</code></pre>
 				<p>Prefix searching:</p>
-				<pre><code class="lang-javascript"><span class="hljs-comment">// check if a prefix exists:</span>
+				<pre><code class="language-javascript"><span class="hljs-comment">// check if a prefix exists:</span>
 myTrie.isPrefix(<span class="hljs-string">'do'</span>); <span class="hljs-comment">// true</span>
-myTrie.isPrefix(<span class="hljs-string">'z'</span>); <span class="hljs-comment">// false</span>
-</code></pre>
+myTrie.isPrefix(<span class="hljs-string">'z'</span>); <span class="hljs-comment">// false</span></code></pre>
 				<p>countPrefix</p>
-				<pre><code class="lang-javascript"><span class="hljs-comment">// count prefixes</span>
-myTrie.countPrefix(<span class="hljs-string">'c'</span>); <span class="hljs-comment">// 2</span>
-</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-comment">// count prefixes</span>
+myTrie.countPrefix(<span class="hljs-string">'c'</span>); <span class="hljs-comment">// 2</span></code></pre>
 				<p>getPrefix</p>
-				<pre><code class="lang-javascript"><span class="hljs-comment">// get an array of words with the passed in prefix</span>
+				<pre><code class="language-javascript"><span class="hljs-comment">// get an array of words with the passed in prefix</span>
 myTrie.getPrefix(<span class="hljs-string">'c'</span>); <span class="hljs-comment">// ['cat', 'cats']</span>
 
 <span class="hljs-comment">// Pass false as the second parameter to disable </span>
 <span class="hljs-comment">// output being sorted alphabetically</span>
 <span class="hljs-comment">// this is useful when your dictionary is already sorted</span>
 <span class="hljs-comment">// and will therefore save performance</span>
-myTrie.getPrefix(<span class="hljs-string">'c'</span>, <span class="hljs-literal">false</span>); <span class="hljs-comment">// ['cat', 'cats']</span>
-</code></pre>
+myTrie.getPrefix(<span class="hljs-string">'c'</span>, <span class="hljs-literal">false</span>); <span class="hljs-comment">// ['cat', 'cats']</span></code></pre>
 				<p>getRandomWordWithPrefix</p>
-				<pre><code class="lang-javascript"><span class="hljs-comment">// get a random word at a prefix</span>
+				<pre><code class="language-javascript"><span class="hljs-comment">// get a random word at a prefix</span>
 myTrie.getRandomWordWithPrefix(<span class="hljs-string">'c'</span>); <span class="hljs-comment">// 'cat'</span>
-myTrie.getRandomWordWithPrefix(<span class="hljs-string">'c'</span>); <span class="hljs-comment">// 'cats'</span>
-</code></pre>
+myTrie.getRandomWordWithPrefix(<span class="hljs-string">'c'</span>); <span class="hljs-comment">// 'cats'</span></code></pre>
 				<h3 id="other-">Other:</h3>
 				<p>getWordsAll</p>
-				<pre><code class="lang-javascript"><span class="hljs-comment">// retrieve a full list of words in the Trie</span>
+				<pre><code class="language-javascript"><span class="hljs-comment">// retrieve a full list of words in the Trie</span>
 <span class="hljs-comment">// the output array is automatically sorted</span>
 myTrie.getWordsAll(); <span class="hljs-comment">// ['cat', 'cats', 'elephant', 'lion', 'tiger']</span>
 
 <span class="hljs-comment">// pass false to disable the output being sorted</span>
 <span class="hljs-comment">// this is useful when your dictionary is already sorted</span>
 <span class="hljs-comment">// and will therefore save performance</span>
-myTrie.getWordsAll(<span class="hljs-literal">false</span>); <span class="hljs-comment">// ['cat', 'cats', 'elephant', 'tiger', 'lion']</span>
-</code></pre>
+myTrie.getWordsAll(<span class="hljs-literal">false</span>); <span class="hljs-comment">// ['cat', 'cats', 'elephant', 'tiger', 'lion']</span></code></pre>
 				<p>hasWord</p>
-				<pre><code class="lang-javascript"><span class="hljs-comment">// check if a word exists in the Trie</span>
+				<pre><code class="language-javascript"><span class="hljs-comment">// check if a word exists in the Trie</span>
 myTrie.hasWord(<span class="hljs-string">'elephant'</span>); <span class="hljs-comment">// true</span>
-myTrie.hasWord(<span class="hljs-string">'zoo'</span>); <span class="hljs-comment">// false</span>
-</code></pre>
+myTrie.hasWord(<span class="hljs-string">'zoo'</span>); <span class="hljs-comment">// false</span></code></pre>
 				<p>getAnagrams</p>
-				<pre><code class="lang-javascript"><span class="hljs-comment">// generate a list of valid anagrams from the given letters</span>
-myTrie.getAnagrams(<span class="hljs-string">'act'</span>); <span class="hljs-comment">// ['cat'];</span>
-</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-comment">// generate a list of valid anagrams from the given letters</span>
+myTrie.getAnagrams(<span class="hljs-string">'act'</span>); <span class="hljs-comment">// ['cat'];</span></code></pre>
 				<p>getSubAnagrams</p>
-				<pre><code class="lang-javascript"><span class="hljs-comment">// generate a list of valid sub-anagrams from the given letters</span>
-myTrie.getSubAnagrams(<span class="hljs-string">'ctalion'</span>); <span class="hljs-comment">// ['cat', 'cats', 'lion'];</span>
-</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-comment">// generate a list of valid sub-anagrams from the given letters</span>
+myTrie.getSubAnagrams(<span class="hljs-string">'ctalion'</span>); <span class="hljs-comment">// ['cat', 'cats', 'lion'];</span></code></pre>
 				<h2 id="credits">Credits</h2>
 				<p>Credit goes to <a href="https://github.com/kentcdodds">Kent C. Dodds</a> for providing the awesome &#39;How to Create an Open Source JavaScript Library&#39; course, available on <a href="https://egghead.io/courses/how-to-write-an-open-source-javascript-library">egghead.io</a>.</p>
 				<h2 id="license">License</h2>
